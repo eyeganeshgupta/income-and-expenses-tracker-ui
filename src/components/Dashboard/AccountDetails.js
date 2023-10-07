@@ -15,6 +15,11 @@ const AccountDetails = () => {
     dispatch(getSingleAccountAction(id));
   }, [id]);
 
+  // TODO: get data from store
+  const { loading, account, error } = useSelector((state) => {
+    return state?.accounts;
+  });
+  
   return (
     <>
       {error && (

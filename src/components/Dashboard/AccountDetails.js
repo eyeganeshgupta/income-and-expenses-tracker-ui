@@ -19,7 +19,10 @@ const AccountDetails = () => {
   const { loading, account, error } = useSelector((state) => {
     return state?.accounts;
   });
-  
+
+  // TODO: get all transactions
+  const transactions = account?.data?.transactions;
+
   return (
     <>
       {error && (

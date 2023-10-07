@@ -8,6 +8,13 @@ const AccountDetails = () => {
   // TODO: getId
   const { id } = useParams();
 
+  // ! dispatch
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getSingleAccountAction(id));
+  }, [id]);
+
   return (
     <>
       {error && (

@@ -5,6 +5,9 @@ import TransactionList from "./TransactionList";
 import { getSingleAccountAction } from "../../redux/slice/accounts/accountsSlice";
 
 const AccountDetails = () => {
+  // TODO: getId
+  const { id } = useParams();
+
   return (
     <>
       {error && (

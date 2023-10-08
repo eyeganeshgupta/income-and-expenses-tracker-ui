@@ -23,6 +23,15 @@ const AccountDetails = () => {
   // TODO: get all transactions
   const transactions = account?.data?.transactions;
 
+  // TODO: calculate totalIncome
+  const totalIncome = transactions
+    ?.filter((transaction) => {
+      return transaction.transactionType === "Income";
+    })
+    ?.reduce((acc, curr) => {
+      return acc + curr.amount;
+    }, 0);
+
   return (
     <>
       {error && (

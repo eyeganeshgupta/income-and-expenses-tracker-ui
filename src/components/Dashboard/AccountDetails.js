@@ -40,7 +40,10 @@ const AccountDetails = () => {
     ?.reduce((acc, curr) => {
       return acc + curr.amount;
     }, 0);
-    
+
+  // TODO: calculate totalBalance
+  const totalBalance = totalIncome - totalExpenses;
+
   return (
     <>
       {error && (

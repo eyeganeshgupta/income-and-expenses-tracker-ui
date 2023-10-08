@@ -32,6 +32,15 @@ const AccountDetails = () => {
       return acc + curr.amount;
     }, 0);
 
+  // TODO: calculate totalExpenses
+  const totalExpenses = transactions
+    ?.filter((transaction) => {
+      return transaction.transactionType === "Expenses";
+    })
+    ?.reduce((acc, curr) => {
+      return acc + curr.amount;
+    }, 0);
+    
   return (
     <>
       {error && (

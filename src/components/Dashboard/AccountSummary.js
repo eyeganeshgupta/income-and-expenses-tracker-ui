@@ -9,6 +9,16 @@ const AccountSummary = ({ profile }) => {
     return account?.transactions;
   });
 
+  // ? total income
+  const totalIncome = transactions?.reduce((acc, transaction) => {
+    return (
+      acc +
+      transaction
+        ?.filter((transaction) => transaction?.transactionType === "Income")
+        .reduce((acc, transaction) => acc + transaction?.amount, 0)
+    );
+  }, 0);
+
   return (
     <>
       {profile?.accounts?.length <= 0 ? (

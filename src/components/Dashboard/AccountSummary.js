@@ -19,6 +19,16 @@ const AccountSummary = ({ profile }) => {
     );
   }, 0);
 
+  // ? total expenses
+  const totalExpenses = transactions?.reduce((acc, transaction) => {
+    return (
+      acc +
+      transaction
+        ?.filter((transaction) => transaction?.transactionType === "Expenses")
+        .reduce((acc, transaction) => acc + transaction?.amount, 0)
+    );
+  }, 0);
+
   return (
     <>
       {profile?.accounts?.length <= 0 ? (

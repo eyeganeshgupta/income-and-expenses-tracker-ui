@@ -3,7 +3,12 @@ import React from "react";
 const AccountSummary = ({ profile }) => {
   // TODO: get all accounts
   const accounts = profile?.accounts;
-  
+
+  // TODO: get all transactions
+  const transactions = accounts?.map((account) => {
+    return account?.transactions;
+  });
+
   return (
     <>
       {profile?.accounts?.length <= 0 ? (

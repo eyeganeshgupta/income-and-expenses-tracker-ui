@@ -10,6 +10,16 @@ const AddAccount = () => {
   // ! dispatch
   const dispatch = useDispatch();
 
+  const [account, setAccount] = useState({
+    name: "",
+    initialBalance: "",
+    notes: "",
+    accountType: "",
+  });
+
+  //---Destructuring---
+  const { name, initialBalance, notes, accountType } = account;
+
   return (
     <section className="py-16 xl:pb-56 bg-white overflow-hidden">
       <div className="container px-4 mx-auto">

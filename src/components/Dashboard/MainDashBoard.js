@@ -12,6 +12,11 @@ const MainDashBoard = () => {
     dispatch(getProfileAction());
   }, [dispatch]);
 
+  // TODO: get data from store
+  const { loading, profile, error } = useSelector((state) => {
+    return state?.users;
+  });
+
   return (
     <>
       {loading ? (

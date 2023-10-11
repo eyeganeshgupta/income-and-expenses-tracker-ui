@@ -20,6 +20,17 @@ const AddAccount = () => {
   //---Destructuring---
   const { name, initialBalance, notes, accountType } = account;
 
+  //---onchange handler----
+  const onChange = (e) => {
+    setAccount({ ...account, [e.target.name]: e.target.value });
+  };
+
+  //---onsubmit handler----
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createAccountAction(account));
+  };
+  
   return (
     <section className="py-16 xl:pb-56 bg-white overflow-hidden">
       <div className="container px-4 mx-auto">

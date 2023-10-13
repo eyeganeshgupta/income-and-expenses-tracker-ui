@@ -30,7 +30,15 @@ const AddAccount = () => {
     e.preventDefault();
     dispatch(createAccountAction(account));
   };
-  
+
+  // TODO: get store data
+  const {
+    account: accountCreated,
+    loading,
+    error,
+    success,
+  } = useSelector((state) => state?.accounts);
+
   return (
     <section className="py-16 xl:pb-56 bg-white overflow-hidden">
       <div className="container px-4 mx-auto">

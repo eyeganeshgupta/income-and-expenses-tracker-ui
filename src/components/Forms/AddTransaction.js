@@ -22,6 +22,17 @@ const AddTransaction = () => {
   //---Destructuring---
   const { name, amount, transactionType, category, notes } = transaction;
 
+  //---onchange handler----
+  const onChange = (e) => {
+    setTransaction({ ...transaction, [e.target.name]: e.target.value });
+  };
+
+  //---onsubmit handler----
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createTransactionAction({ ...transaction, id }));
+  };
+
   return (
     <section className="py-16 xl:pb-56 bg-white overflow-hidden">
       <div className="container px-4 mx-auto">

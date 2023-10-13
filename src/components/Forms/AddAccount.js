@@ -39,6 +39,17 @@ const AddAccount = () => {
     success,
   } = useSelector((state) => state?.accounts);
 
+  // TODO: redirect after 3 seconds
+  useEffect(() => {
+    setTimeout(() => {
+      if (success) {
+        navigate("/dashboard");
+        // TODO: reload tye page
+        window.location.reload();
+      }
+    }, 3000);
+  }, [success]);
+
   return (
     <section className="py-16 xl:pb-56 bg-white overflow-hidden">
       <div className="container px-4 mx-auto">

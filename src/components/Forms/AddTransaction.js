@@ -10,6 +10,18 @@ const AddTransaction = () => {
   // ! dispatch
   const dispatch = useDispatch();
 
+  const [transaction, setTransaction] = useState({
+    name: "",
+    amount: "",
+    transactionType: "",
+    date: "",
+    category: "",
+    notes: "",
+  });
+
+  //---Destructuring---
+  const { name, amount, transactionType, category, notes } = transaction;
+
   return (
     <section className="py-16 xl:pb-56 bg-white overflow-hidden">
       <div className="container px-4 mx-auto">

@@ -25,6 +25,17 @@ const EditAccount = () => {
     return state?.accounts;
   });
 
+  const [transaction, setTransaction] = useState({
+    name: account?.data?.name,
+    initialBalance: account?.data?.initialBalance,
+    transactionType: account?.data?.transactionType,
+    notes: account?.data?.notes,
+    accountType: account?.data?.accountType,
+  });
+
+  //---Destructuring---
+  const { name, initialBalance, accountType, notes } = transaction;
+  
   return (
     <section className="py-16 xl:pb-56 bg-white overflow-hidden">
       <div className="container px-4 mx-auto">

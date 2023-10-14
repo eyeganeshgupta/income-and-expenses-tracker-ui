@@ -16,6 +16,10 @@ const EditAccount = () => {
   // ! dispatch
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getSingleAccountAction(id));
+  }, [id, dispatch]);
+
   return (
     <section className="py-16 xl:pb-56 bg-white overflow-hidden">
       <div className="container px-4 mx-auto">

@@ -35,7 +35,29 @@ const EditAccount = () => {
 
   //---Destructuring---
   const { name, initialBalance, accountType, notes } = transaction;
-  
+
+  //---onchange handler----
+  const onChange = (e) => {
+    setTransaction({ ...transaction, [e.target.name]: e.target.value });
+  };
+
+  //---onsubmit handler----
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(updateAccountAction({ ...transaction, id }));
+  };
+
+  // TODO: redirect after 3 seconds
+  useEffect(() => {
+    setTimeout(() => {
+      if (isUpdated) {
+        navigate("/dashboard");
+        // reload the page
+        window.location.reload();
+      }
+    }, 3000);
+  }, [isUpdated]);
+
   return (
     <section className="py-16 xl:pb-56 bg-white overflow-hidden">
       <div className="container px-4 mx-auto">

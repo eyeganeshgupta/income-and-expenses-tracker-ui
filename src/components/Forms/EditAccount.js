@@ -20,6 +20,11 @@ const EditAccount = () => {
     dispatch(getSingleAccountAction(id));
   }, [id, dispatch]);
 
+  // TODO: get store data
+  const { account, loading, error, isUpdated } = useSelector((state) => {
+    return state?.accounts;
+  });
+
   return (
     <section className="py-16 xl:pb-56 bg-white overflow-hidden">
       <div className="container px-4 mx-auto">

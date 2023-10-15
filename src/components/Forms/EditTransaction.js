@@ -46,6 +46,11 @@ const EditTransaction = () => {
     dispatch(updateTransactionAction({ ...transaction, id }));
   };
 
+  // TODO: get single transaction
+  useEffect(() => {
+    dispatch(getSingleTransactionAction(id));
+  }, [dispatch, id]);
+
   return (
     <section className="py-16 xl:pb-56 bg-white overflow-hidden">
       <div className="container px-4 mx-auto">

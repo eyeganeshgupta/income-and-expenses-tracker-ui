@@ -51,6 +51,17 @@ const EditTransaction = () => {
     dispatch(getSingleTransactionAction(id));
   }, [dispatch, id]);
 
+  // TODO: redirect after 3 seconds
+  useEffect(() => {
+    setTimeout(() => {
+      if (isUpdated) {
+        navigate("/dashboard");
+        //reload tye page
+        window.location.reload();
+      }
+    }, 3000);
+  }, [isUpdated]);
+
   return (
     <section className="py-16 xl:pb-56 bg-white overflow-hidden">
       <div className="container px-4 mx-auto">

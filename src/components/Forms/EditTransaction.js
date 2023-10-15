@@ -24,6 +24,17 @@ const EditTransaction = () => {
     error,
   } = useSelector((state) => state?.transactions);
 
+  const [transaction, setTransaction] = useState({
+    name: transactionFetched?.data?.name,
+    amount: transactionFetched?.data?.amount,
+    transactionType: transactionFetched?.data?.transactionType,
+    category: transactionFetched?.data?.category,
+    notes: transactionFetched?.data?.notes,
+  });
+
+  //---Destructuring---
+  const { name, amount, transactionType, category, notes } = transaction;
+
   return (
     <section className="py-16 xl:pb-56 bg-white overflow-hidden">
       <div className="container px-4 mx-auto">

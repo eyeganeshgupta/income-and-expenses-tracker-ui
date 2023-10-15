@@ -16,6 +16,14 @@ const EditTransaction = () => {
   // ! dispatch
   const dispatch = useDispatch();
 
+  // TODO: get data from store
+  const {
+    transaction: transactionFetched,
+    isUpdated,
+    loading,
+    error,
+  } = useSelector((state) => state?.transactions);
+
   return (
     <section className="py-16 xl:pb-56 bg-white overflow-hidden">
       <div className="container px-4 mx-auto">

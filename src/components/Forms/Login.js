@@ -15,6 +15,27 @@ const Login = () => {
   //---Destructuring---
   const { email, password } = formData;
 
+  //---onchange handler----
+  const onChangeHandler = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  //---onsubmit handler----
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    dispatch(loginUserAction(formData));
+  };
+
+  // TODO: select store data
+  const { loading, userAuth } = useSelector((state) => {
+    return state?.users;
+  });
+
+  // TODO: redirect
+  if (userAuth?.userInfo?.status) {
+    window.location.href = "/dashboard";
+  }
+
   return (
     <>
       <section className="relative py-16 bg-gray-50">

@@ -7,6 +7,14 @@ const Login = () => {
   // ! dispatch
   const dispatch = useDispatch();
 
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  //---Destructuring---
+  const { email, password } = formData;
+
   return (
     <>
       <section className="relative py-16 bg-gray-50">

@@ -16,6 +16,11 @@ const Login = () => {
   //---Destructuring---
   const { fullName, email, password } = formData;
 
+  //---onchange handler----
+  const onChangeHandler = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   return (
     <>
       <section className="relative py-16 bg-gray-50">

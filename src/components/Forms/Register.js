@@ -26,7 +26,12 @@ const Login = () => {
     e.preventDefault();
     dispatch(registerUserAction(formData));
   };
-  
+
+  // TODO: select store data
+  const { loading, userAuth } = useSelector((state) => {
+    return state.users;
+  });
+
   return (
     <>
       <section className="relative py-16 bg-gray-50">

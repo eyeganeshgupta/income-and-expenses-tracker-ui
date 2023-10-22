@@ -7,8 +7,21 @@ import logo from "../../assets/logo-circle.png";
 import { logoutUserAction } from "../../redux/slice/users/usersSlice";
 
 export default function Navbar() {
+  const { userInfo } = useSelector((state) => {
+    return state?.users?.userAuth;
+  });
+
+  const isLogin = userInfo?.token ? true : false;
+
   // ! dispatch
   const dispatch = useDispatch();
+
+  // ? logoutHandler
+  const logoutHandler = () => {
+    dispatch(logoutUserAction());
+    // * redirect
+    window.location.href = "/login";
+  };
 
   return (
     <Disclosure as="nav" className="bg-gray-800">

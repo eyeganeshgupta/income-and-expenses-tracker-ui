@@ -21,6 +21,12 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  //---onsubmit handler----
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    dispatch(registerUserAction(formData));
+  };
+  
   return (
     <>
       <section className="relative py-16 bg-gray-50">

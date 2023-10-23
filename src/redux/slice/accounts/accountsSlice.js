@@ -105,3 +105,82 @@ export const updateAccountAction = createAsyncThunk(
     }
   }
 );
+
+// * accountsSlice - reducer
+const accountsSlice = createSlice({
+  name: "accounts",
+  initialState,
+  extraReducers: (builder) => {
+    // TODO: handle create account lifecycle - pending, fulfilled, rejected
+    // ? pending
+    builder.addCase(createAccountAction.pending, (state) => {
+      state.loading = true;
+    });
+
+    // ? fulfilled
+    builder.addCase(createAccountAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.success = true;
+      state.account = action.payload;
+      state.error = null;
+    });
+
+    // ? rejected
+    builder.addCase(createAccountAction.rejected, (state, action) => {
+      state.loading = false;
+      state.success = false;
+      state.account = null;
+      state.error = action.payload;
+    });
+
+    // ---------------------------------------------
+
+    // TODO: handle singleAccount lifecycle - pending, fulfilled, rejected
+    // ? pending
+    builder.addCase(getSingleAccountAction.pending, (state) => {
+      state.loading = true;
+    });
+
+    // ? fulfilled
+    builder.addCase(getSingleAccountAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.success = true;
+      state.account = action.payload;
+      state.error = null;
+    });
+
+    // ? rejected
+    builder.addCase(getSingleAccountAction.rejected, (state, action) => {
+      state.loading = false;
+      state.success = false;
+      state.account = null;
+      state.error = action.payload;
+    });
+
+    // ---------------------------------------------
+
+    // TODO: handle update accountDetails lifecycle - pending, fulfilled, rejected
+    // ? pending
+    builder.addCase(updateAccountAction.pending, (state) => {
+      state.loading = true;
+    });
+
+    // ? fulfilled
+    builder.addCase(updateAccountAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.success = true;
+      state.isUpdated = true;
+      state.account = action.payload;
+      state.error = null;
+    });
+
+    // ? rejected
+    builder.addCase(updateAccountAction.rejected, (state, action) => {
+      state.loading = false;
+      state.success = false;
+      state.isUpdated = false;
+      state.account = null;
+      state.error = action.payload;
+    });
+  },
+});

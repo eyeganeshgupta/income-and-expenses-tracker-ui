@@ -184,3 +184,8 @@ const accountsSlice = createSlice({
     });
   },
 });
+
+// * generate reducer
+const accountsReducer = accountsSlice.reducer;
+
+export default accountsReducer;

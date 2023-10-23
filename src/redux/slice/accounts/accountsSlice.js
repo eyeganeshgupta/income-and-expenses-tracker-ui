@@ -11,3 +11,41 @@ const initialState = {
   error: null,
   isUpdated: false,
 };
+
+// TODO: Create Action Creator - createAsyncThunk
+
+// ! action to create account/project
+export const createAccountAction = createAsyncThunk(
+  "account/create",
+  async (payload, { rejectWithValue, getState, dispatch }) => {
+    const { name, initialBalance, accountType, notes } = payload;
+    try {
+      // TODO: get the token
+      const token = getState()?.users?.userAuth?.userInfo?.token;
+
+      // TODO: pass the token to header
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      // TODO: make the request
+      const { data } = await axios.post(
+        `${baseURL}/accounts`,
+        {
+          name,
+          initialBalance,
+          accountType,
+          notes,
+        },
+        config
+      );
+
+      return data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);

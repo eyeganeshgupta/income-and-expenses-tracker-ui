@@ -49,3 +49,28 @@ export const createAccountAction = createAsyncThunk(
     }
   }
 );
+
+// ! action to get single accountDetails
+export const getSingleAccountAction = createAsyncThunk(
+  "account/get-details",
+  async (id, { rejectWithValue, getState, dispatch }) => {
+    try {
+      // TODO: get the token
+      const token = getState()?.users?.userAuth?.userInfo?.token;
+
+      // TODO: pass the token to header
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      // TODO: make the request
+      const { data } = await axios.get(`${baseURL}/accounts/${id}`, config);
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);

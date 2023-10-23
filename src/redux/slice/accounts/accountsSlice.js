@@ -74,3 +74,34 @@ export const getSingleAccountAction = createAsyncThunk(
     }
   }
 );
+
+// ! action to update accountDetails
+export const updateAccountAction = createAsyncThunk(
+  "account/update",
+  async (payload, { rejectWithValue, getState, dispatch }) => {
+    // ? destructing payload
+    const { name, initialBalance, accountType, notes, id } = payload;
+    try {
+      // TODO: get the token
+      const token = getState()?.users?.userAuth?.userInfo?.token;
+
+      // TODO: pass the token to header
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      // TODO: make the request to update an accountDetails
+      const { data } = await axios.put(
+        `${baseURL}/accounts/${id}`,
+        { name, accountType, notes, initialBalance },
+        config
+      );
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);

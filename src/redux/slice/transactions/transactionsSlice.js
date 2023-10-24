@@ -76,3 +76,78 @@ export const getSingleTransactionAction = createAsyncThunk(
     }
   }
 );
+
+// * transactionsSlice - reducer
+const transactionsSlice = createSlice({
+  name: "transactions",
+  initialState,
+  extraReducers: (builder) => {
+    // TODO: handle create transaction lifecycle - pending, fulfilled, rejected
+    // ? pending
+    builder.addCase(createTransactionAction.pending, (state) => {
+      state.loading = true;
+    });
+
+    // ? fulfilled
+    builder.addCase(createTransactionAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.transaction = action.payload;
+      state.isAdded = true;
+      state.error = null;
+    });
+
+    // ? rejected
+    builder.addCase(createTransactionAction.rejected, (state, action) => {
+      state.loading = false;
+      state.transaction = null;
+      state.isAdded = false;
+      state.error = action.payload;
+    });
+
+    // ---------------------------------------------
+
+    // TODO: handle update transaction lifecycle - pending, fulfilled, rejected
+    // ? pending
+    builder.addCase(updateTransactionAction.pending, (state) => {
+      state.loading = true;
+    });
+
+    // ? fulfilled
+    builder.addCase(updateTransactionAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.transaction = action.payload;
+      state.isUpdated = true;
+      state.error = null;
+    });
+
+    // ? rejected
+    builder.addCase(updateTransactionAction.rejected, (state, action) => {
+      state.loading = false;
+      state.transaction = null;
+      state.isUpdated = false;
+      state.error = action.payload;
+    });
+
+    // ---------------------------------------------
+
+    // TODO: handle getSingleTransaction lifecycle - pending, fulfilled, rejected
+    // ? pending
+    builder.addCase(getSingleTransactionAction.pending, (state) => {
+      state.loading = true;
+    });
+
+    // ? fulfilled
+    builder.addCase(getSingleTransactionAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.transaction = action.payload;
+      state.error = null;
+    });
+
+    // ? rejected
+    builder.addCase(getSingleTransactionAction.rejected, (state, action) => {
+      state.loading = false;
+      state.transaction = null;
+      state.error = action.payload;
+    });
+  },
+});

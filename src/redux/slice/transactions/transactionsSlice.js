@@ -52,6 +52,45 @@ export const createTransactionAction = createAsyncThunk(
   }
 );
 
+// ! action to update transaction
+export const updateTransactionAction = createAsyncThunk(
+  "transaction/update",
+  async (payload, { rejectWithValue, getState, dispatch }) => {
+    // ? destructing the payload
+    const { name, account, transactionType, amount, category, notes, id } =
+      payload;
+    try {
+      // TODO: get the token
+      const token = getState()?.users?.userAuth?.userInfo?.token;
+
+      // TODO: pass the token to header
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      // TODO: make the request to update transaction
+      const { data } = await axios.put(
+        `${baseURL}/transactions/${id}`,
+        {
+          name,
+          account,
+          transactionType,
+          amount,
+          category,
+          notes,
+          id,
+        },
+        config
+      );
+      return data;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
 // ! action to fetch single transaction details
 export const getSingleTransactionAction = createAsyncThunk(
   "transaction/details",

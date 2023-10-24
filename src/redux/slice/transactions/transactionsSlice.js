@@ -151,3 +151,8 @@ const transactionsSlice = createSlice({
     });
   },
 });
+
+// * generate reducer
+const transactionsReducer = transactionsSlice.reducer;
+
+export default transactionsReducer;

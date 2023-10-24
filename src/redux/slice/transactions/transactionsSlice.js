@@ -51,3 +51,28 @@ export const createTransactionAction = createAsyncThunk(
     }
   }
 );
+
+// ! action to fetch single transaction details
+export const getSingleTransactionAction = createAsyncThunk(
+  "transaction/details",
+  async (id, { rejectWithValue, getState, dispatch }) => {
+    try {
+      // TODO: get the token
+      const token = getState()?.users?.userAuth?.userInfo?.token;
+
+      // TODO: pass the token to header
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      // TODO: make the request
+      const { data } = await axios.get(`${baseURL}/transactions/${id}`, config);
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);

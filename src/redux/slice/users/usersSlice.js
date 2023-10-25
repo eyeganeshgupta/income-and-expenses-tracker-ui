@@ -53,3 +53,31 @@ export const registerUserAction = createAsyncThunk(
     }
   }
 );
+
+// ! loginUserAction
+export const loginUserAction = createAsyncThunk(
+  "user/login",
+  async ({ email, password }, { rejectWithValue, getState, dispatch }) => {
+    try {
+      // settingUp header
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const response = await axios.post(
+        `${baseURL}/users/login`,
+        { email, password },
+        config
+      );
+
+      // TODO: save user into localStorage
+      localStorage.setItem("userInfo", JSON.stringify(response.data));
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);

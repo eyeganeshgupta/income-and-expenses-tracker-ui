@@ -88,3 +88,83 @@ export const logoutUserAction = createAsyncThunk("user/logout", async () => {
   localStorage.removeItem("userInfo");
   return null;
 });
+
+// * usersSlice - reducer
+const usersSlice = createSlice({
+  name: "users",
+  initialState,
+  extraReducers: (builder) => {
+    // TODO: handle register lifecycle - pending, fulfilled, rejected
+    // ? pending
+    builder.addCase(registerUserAction.pending, (state, action) => {
+      state.loading = true;
+    });
+
+    // ? fulfilled
+    builder.addCase(registerUserAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.userAuth.userInfo = action.payload;
+      state.userAuth.error = null;
+    });
+
+    // ? rejected
+    builder.addCase(registerUserAction.rejected, (state, action) => {
+      state.loading = false;
+      state.userAuth.userInfo = null;
+      state.userAuth.error = action.payload;
+    });
+
+    // ---------------------------------------------
+
+    // TODO: handle login lifecycle - pending, fulfilled, rejected
+    // ? pending
+    builder.addCase(loginUserAction.pending, (state, action) => {
+      state.loading = true;
+    });
+
+    // ? fulfilled
+    builder.addCase(loginUserAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.userAuth.userInfo = action.payload;
+      state.userAuth.error = null;
+    });
+
+    // ? rejected
+    builder.addCase(loginUserAction.rejected, (state, action) => {
+      state.loading = false;
+      state.userAuth.userInfo = null;
+      state.userAuth.error = action.payload;
+    });
+
+    // ----------------logout-----------------------
+
+    // TODO: handle logout fulfilled state
+    // ? fulfilled
+    builder.addCase(logoutUserAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.userAuth.userInfo = null;
+    });
+
+    // ---------------------------------------------
+
+    // TODO: handle profile lifecycle - pending, fulfilled, rejected
+    // ? pending
+    builder.addCase(getProfileAction.pending, (state, action) => {
+      state.loading = true;
+      state.profile = null;
+    });
+
+    // ? fulfilled
+    builder.addCase(getProfileAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.profile = action.payload;
+    });
+
+    // ? rejected
+    builder.addCase(getProfileAction.rejected, (state, action) => {
+      state.loading = false;
+      state.profile = null;
+      state.error = action.payload;
+    });
+  },
+});

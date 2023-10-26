@@ -168,3 +168,8 @@ const usersSlice = createSlice({
     });
   },
 });
+
+// TODO: generate reducer
+const usersReducer = usersSlice.reducer;
+
+export default usersReducer;

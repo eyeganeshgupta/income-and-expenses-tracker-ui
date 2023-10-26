@@ -81,3 +81,10 @@ export const loginUserAction = createAsyncThunk(
     }
   }
 );
+
+// ! logoutUserAction
+export const logoutUserAction = createAsyncThunk("user/logout", async () => {
+  // * remove user from localStorage
+  localStorage.removeItem("userInfo");
+  return null;
+});

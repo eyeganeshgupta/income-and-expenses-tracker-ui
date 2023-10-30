@@ -1,0 +1,12 @@
+import Home from "./components/HomePage/Home";
+import Register from "./components/Forms/Register";
+import MainDashBoard from "./components/Dashboard/MainDashBoard";
+import AccountDetails from "./components/Dashboard/AccountDetails";
+import Navbar from "./components/Navbar/Navbar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AddTransaction from "./components/Forms/AddTransaction";
+import EditTransaction from "./components/Forms/EditTransaction";
+import AddAccount from "./components/Forms/AddAccount";
+import EditAccount from "./components/Forms/EditAccount";
+import Login from "./components/Forms/Login";
+import AuthRoute from "./components/AuthRoute/AuthRoute";
